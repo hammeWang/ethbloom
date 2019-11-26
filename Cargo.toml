@@ -1,0 +1,32 @@
+[package]
+name = "ethbloom"
+version = "0.1.0"
+authors = ["hammeWang <dsw0602@foxmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tiny-keccak = { version = "1.5", features = ["keccak"] }
+codec = { package = "parity-scale-codec", version = "1.0.0", default-features = false, features = ["derive"] }
+impl-codec = { version = "0.4", default-features = false, optional = true }
+fixed-hash = { version = "0.4", default-features = false}
+impl-rlp = { version = "0.2", default-features = false, optional = true }
+crunchy = { version = "0.2.2", default-features = false, features = ["limit_256"] }
+impl-serde = { version = "0.2.0", defult-features =  false, optional = true }
+
+[dev-dependencies]
+criterion = "0.3.0"
+rand = "0.7.2"
+hex-literal = "0.2.1"
+
+[features]
+default = ["std", "serialize"]
+std = [
+    "codec/std",
+    "impl-codec/std",
+    "fixed-hash/std",
+    "impl-rlp/std",
+    "crunchy/std",
+]
+serialize = ["std", "impl-serde"]
